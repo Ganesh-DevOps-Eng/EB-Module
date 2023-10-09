@@ -1,0 +1,28 @@
+output "vpc" {
+  value = aws_vpc.vpc.id
+}
+
+output "public_subnet" {
+  value = aws_subnet.public[*].id
+}
+
+output "public_subnet_ids" {
+  value = toset([aws_subnet.public[0].id, aws_subnet.public[1].id])
+}
+
+
+output "private_subnet" {
+  value = aws_subnet.private[*].id
+}
+
+output "bastion_sg" {
+  value = aws_security_group.bastion_sg.id
+}
+
+output "elastic_beanstalk_sg" {
+  value = aws_security_group.elastic_beanstalk_sg.id
+}
+
+output "rds_sg" {
+  value = [aws_security_group.rds_sg.id]
+}
