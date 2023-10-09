@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      php: 5.6.3
+      php: 8.1
     commands:
       - composer install # or any other dependency manager
   pre_build:

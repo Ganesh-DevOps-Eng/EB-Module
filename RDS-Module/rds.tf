@@ -21,10 +21,10 @@ resource "aws_db_subnet_group" "db_sg" {
 resource "aws_db_instance" "rds" {
   identifier             = "${var.project_name}-rds"
   engine                 = "mysql"
-  engine_version         = "5.7" # Choose a supported version
-  instance_class         = "db.t2.micro"
+  engine_version         = "8.0" # Choose a supported version
+  instance_class         = "db.r3.large"
   allocated_storage      = 20
-  storage_type           = "gp2"
+  storage_type           = "gp3"
   username               = var.username
   password               = var.password
   db_subnet_group_name   = aws_db_subnet_group.db_sg.name
