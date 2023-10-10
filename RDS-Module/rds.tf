@@ -22,7 +22,7 @@ resource "aws_db_instance" "rds" {
   identifier             = "${var.project_name}-rds"
   engine                 = "mysql"
   engine_version         = "8.0" # Choose a supported version
-  instance_class         = "db.r3.large"
+  instance_class         = "db.t4g.large"
   allocated_storage      = 20
   storage_type           = "gp3"
   username               = var.username

@@ -6,5 +6,5 @@ variable "instance_type" {}
 variable "vpc_cidr_block" {}
 variable "project_name" {}
 variable "az_count" {}
-
+variable "eb_solution_stack" {}
 

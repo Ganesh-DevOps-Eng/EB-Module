@@ -12,7 +12,7 @@ phases:
       - MYSQL_USER="admin"
       - MYSQL_PASSWORD="admin"
       - DATABASE_NAME="inventory_system"
-      - wget https://github.com/Ganesh-DevOps-Eng/InventorySystem_PHP.git
+      - wget https://github.com/Ganesh-DevOps-Eng/InventorySystem_PHP/blob/main/InventorySystem_PHP.zip
       - unzip InventorySystem_PHP.zip -d /var/www/html/
       - cd /var/www/html/DATABASE FILE/
       - MYSQL_HOST=$(/usr/bin/aws rds describe-db-instances --db-instance-identifier ${var.project_name}-rds --query 'DBInstances[0].Endpoint.Address' --output text)

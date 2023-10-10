@@ -3,7 +3,7 @@ resource "aws_codepipeline" "cicd_pipeline" {
   role_arn = aws_iam_role.codepipeline_service_role.arn
 
   artifact_store {
-    location = "elasticbeanstalk-ap-south-1-574721397869"
+    location = "elasticbeanstalk-us-east-1-015058543222"
     type     = "S3"
   }
 
