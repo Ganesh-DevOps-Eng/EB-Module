@@ -1,7 +1,7 @@
 resource "aws_codebuild_project" "vprofile_build" {
   name         = "Vprofile-Build"
   description  = "CodeBuild project for Vprofile"
-  service_role = aws_iam_role.codebuild_service_role_role.arn
+  service_role = aws_iam_role.codebuild_service_role.arn
 
   source {
     type            = "GITHUB"
@@ -20,7 +20,7 @@ resource "aws_codebuild_project" "vprofile_build" {
   artifacts {
     type     = "S3"
     name     = "vprofile-build-artifacts"
-    location = "elasticbeanstalk-${var.region}-${account_id}"
+    location = "elasticbeanstalk-${var.region}-${data.aws_caller_identity.current.account_id}"
 
     encryption_disabled = false
   }

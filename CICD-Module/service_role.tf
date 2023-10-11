@@ -25,8 +25,8 @@ EOF
     {
       "Effect": "Allow",
       "Resource": [
-        "arn:aws:logs:${var.region}:${account_id}:log-group:/aws/codebuild/${var.project_name}-Build",
-        "arn:aws:logs:${var.region}:${account_id}:log-group:/aws/codebuild/${var.project_name}-Build:*"
+        "arn:aws:logs:${var.region}:${data.aws_caller_identity.current.account_id}:log-group:/aws/codebuild/${var.project_name}-Build",
+        "arn:aws:logs:${var.region}:${data.aws_caller_identity.current.account_id}:log-group:/aws/codebuild/${var.project_name}-Build:*"
       ],
       "Action": [
         "logs:CreateLogGroup",
@@ -37,7 +37,7 @@ EOF
     {
       "Effect": "Allow",
       "Resource": [
-        "arn:aws:s3:::codepipeline-${var.region}-${account_id}-*"
+        "arn:aws:s3:::codepipeline-${var.region}-${data.aws_caller_identity.current.account_id}-*"
       ],
       "Action": [
         "s3:PutObject",
@@ -50,7 +50,7 @@ EOF
     {
       "Effect": "Allow",
       "Resource": [
-        "arn:aws:codecommit:${var.region}:${account_id}:${var.project_name}-code-repo"
+        "arn:aws:codecommit:${var.region}:${data.aws_caller_identity.current.account_id}:${var.project_name}-code-repo"
       ],
       "Action": [
         "codecommit:GitPull"
@@ -59,8 +59,8 @@ EOF
     {
       "Effect": "Allow",
       "Resource": [
-        "arn:aws:s3:::elasticbeanstalk-${var.region}-${account_id}",
-        "arn:aws:s3:::elasticbeanstalk-${var.region}-${account_id}/*"
+        "arn:aws:s3:::elasticbeanstalk-${var.region}-${data.aws_caller_identity.current.account_id}",
+        "arn:aws:s3:::elasticbeanstalk-${var.region}-${data.aws_caller_identity.current.account_id}/*"
       ],
       "Action": [
         "s3:PutObject",
@@ -78,7 +78,7 @@ EOF
         "codebuild:BatchPutCodeCoverages"
       ],
       "Resource": [
-        "arn:aws:codebuild:${var.region}:${account_id}:report-group/${var.project_name}-Build-*"
+        "arn:aws:codebuild:${var.region}:${data.aws_caller_identity.current.account_id}:report-group/${var.project_name}-Build-*"
       ]
     }
   ]
@@ -95,8 +95,8 @@ EOF
     {
       "Effect": "Allow",
       "Resource": [
-        "arn:aws:logs:${var.region}:${account_id}:log-group:${var.project_name}-cicd-project",
-        "arn:aws:logs:${var.region}:${account_id}:log-group:${var.project_name}-cicd-project:*"
+        "arn:aws:logs:${var.region}:${data.aws_caller_identity.current.account_id}:log-group:${var.project_name}-cicd-project",
+        "arn:aws:logs:${var.region}:${data.aws_caller_identity.current.account_id}:log-group:${var.project_name}-cicd-project:*"
       ],
       "Action": [
         "logs:CreateLogGroup",
@@ -145,7 +145,7 @@ EOF
         "codepipeline:StartPipelineExecution"
       ],
       "Resource": [
-        "arn:aws:codepipeline:${var.region}:${account_id}:${var.project_name}"
+        "arn:aws:codepipeline:${var.region}:${data.aws_caller_identity.current.account_id}:${var.project_name}"
       ]
     }
   ]

@@ -1,4 +1,6 @@
-
+provider "aws" {
+  region = var.region
+}
 
 module "RDS-Module" {
   source            = "./RDS-Module"
