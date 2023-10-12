@@ -7,10 +7,11 @@ project_name      = "matelliocorp"
 eb_solution_stack = "64bit Amazon Linux 2023 v4.0.1 running PHP 8.1"
 
 region                       = "us-east-1"
-source_bucket = "elasticbeanstalk-us-east-1-015058543222"
-source_object_key = "InventorySystem_PHP.zip"
-s3_location = "s3://elasticbeanstalk-us-east-1-015058543222/InventorySystem_PHP.zip"
-
+Owner      = "Ganesh-DevOps-Eng"  
+Repo       = "InventorySystem_PHP"  
+Branch     = "main"  
+OAuthToken = "11AGLMARY0VR7YcqQvSuUr_xWXxxJZYsXyk6pWffOOd5Ld9ztr8wg9aZWOptdYAGhf4LWW4CVBrnQk22Q6"
+s3_location = "elasticbeanstalk-us-east-1-015058543222"
 
 #solution_stack_name = "64bit Amazon Linux 2 v4.3.12 running Tomcat 8.5 Corretto 8"
 #solution_stack_name = "64bit Amazon Linux 2023 v6.0.1 running Node.js 18"

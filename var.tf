@@ -12,6 +12,8 @@ variable "az_count" {}
 #CICD-Module
 
 variable "region" {}
-variable "source_bucket" {}
-variable "source_object_key" {} #update
+variable "Owner" {}
+variable "Branch" {} #update
 variable "s3_location" {}
+variable "OAuthToken" {}
+variable "Repo" {}  

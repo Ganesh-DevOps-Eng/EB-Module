@@ -1,44 +1,30 @@
-resource "aws_codepipeline" "cicd_pipeline" {
-  name     = "${var.project_name}-cicd_pipeline"
-  role_arn = aws_iam_role.codepipeline_service_role.arn
+resource "aws_codepipeline" "codepipeline" {
+  name     = "my-codepipeline"
+  role_arn = aws_iam_role.codepipeline_role.arn
 
   artifact_store {
-    location = var.s3_location
+    location = var.s3_location # Replace with your S3 bucket
     type     = "S3"
   }
 
-stage {
+  stage {
     name = "Source"
 
     action {
       name             = "SourceAction"
       category         = "Source"
-      owner            = "AWS"
-      provider         = "S3"
+      owner            = "ThirdParty"
+      provider         = "GitHub"
       version          = "1"
-      output_artifacts = ["SourceArtifact"]
-      configuration = {
-        S3Bucket         = var.source_bucket
-        S3ObjectKey      = var.source_object_key
-        PollForSourceChanges  = true
-      }
-    }
-  }
+      output_artifacts = ["SourceOutput"]
 
-  stage {
-    name = "Build"
-
-    action {
-      name             = "BuildAction"
-      category         = "Build"
-      owner            = "AWS"
-      provider         = "CodeBuild"
-      version          = "1"
-      input_artifacts  = ["SourceArtifact"]
-      output_artifacts = ["BuildArtifact"]
       configuration = {
-        ProjectName = "${var.project_name}-codebuild-stage"
+        Owner      = var.Owner
+        Repo       = var.Repo  
+        Branch     = var.Branch  
+        OAuthToken = var.OAuthToken
       }
+
     }
   }
 
@@ -49,15 +35,14 @@ stage {
       name            = "DeployAction"
       category        = "Deploy"
       owner           = "AWS"
-      provider        = "ElasticBeanstalk"
+      provider        = "CodeDeploy"
       version         = "1"
-      input_artifacts = ["BuildArtifact"]
+      input_artifacts = ["SourceOutput"]
+
       configuration = {
-        ApplicationName = "${var.project_name}-eb-app"
-        EnvironmentName = "${var.project_name}-eb-env"
+        ApplicationName = "your-codedeploy-application-name"
+        DeploymentGroupName = "your-codedeploy-deployment-group-name"
       }
     }
   }
 }
-
-
