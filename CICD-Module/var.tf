@@ -1,7 +1,8 @@
 variable "region" {}
 variable "project_name" {}
-variable "Owner" {}
-variable "Branch" {} #update
+
+variable "FullRepositoryId" {} #update
 variable "s3_location" {}
-variable "OAuthToken" {}
-variable "Repo" {}  
+variable "ConnectionArn" {}
+variable "BranchName" {}
+

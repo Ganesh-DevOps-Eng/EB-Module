@@ -7,10 +7,9 @@ project_name      = "matelliocorp"
 eb_solution_stack = "64bit Amazon Linux 2023 v4.0.1 running PHP 8.1"
 
 region                       = "us-east-1"
-Owner      = "Ganesh-DevOps-Eng"  
-Repo       = "InventorySystem_PHP"  
-Branch     = "main"  
-OAuthToken = "11AGLMARY0VR7YcqQvSuUr_xWXxxJZYsXyk6pWffOOd5Ld9ztr8wg9aZWOptdYAGhf4LWW4CVBrnQk22Q6"
+FullRepositoryId = "Ganesh-DevOps-Eng/php-code"
+BranchName     = "main"  
+ConnectionArn = "arn:aws:codestar-connections:us-east-1:015058543222:connection/f3944f5f-eca2-49cf-8264-3bda920efcb8"
 s3_location = "elasticbeanstalk-us-east-1-015058543222"
 
 #solution_stack_name = "64bit Amazon Linux 2 v4.3.12 running Tomcat 8.5 Corretto 8"

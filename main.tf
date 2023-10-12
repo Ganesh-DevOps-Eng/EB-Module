@@ -18,8 +18,7 @@ module "CICD-Module" {
   project_name                 = var.project_name
   region                       = var.region
   s3_location = var.s3_location
-        Owner      = var.Owner
-        Repo       = var.Repo  
-        Branch     = var.Branch  
-        OAuthToken = var.OAuthToken
+        ConnectionArn = var.ConnectionArn
+        FullRepositoryId = var.FullRepositoryId
+        BranchName = var.BranchName
 }

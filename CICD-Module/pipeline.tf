@@ -10,21 +10,20 @@ resource "aws_codepipeline" "codepipeline" {
   stage {
     name = "Source"
 
-    action {
-      name             = "SourceAction"
+      action {
+      name             = "Source"
       category         = "Source"
-      owner            = "ThirdParty"
-      provider         = "GitHub"
+      owner            = "AWS"
+      provider         = "CodeStarSourceConnection"
       version          = "1"
-      output_artifacts = ["SourceOutput"]
+      output_artifacts = ["source_output"]
+
 
       configuration = {
-        Owner      = var.Owner
-        Repo       = var.Repo  
-        Branch     = var.Branch  
-        OAuthToken = var.OAuthToken
+        ConnectionArn = var.ConnectionArn
+        FullRepositoryId = var.FullRepositoryId
+        BranchName = var.BranchName
       }
-
     }
   }
 
@@ -35,13 +34,13 @@ resource "aws_codepipeline" "codepipeline" {
       name            = "DeployAction"
       category        = "Deploy"
       owner           = "AWS"
-      provider        = "CodeDeploy"
+      provider        = "ElasticBeanstalk"
       version         = "1"
-      input_artifacts = ["SourceOutput"]
+      input_artifacts = ["source_output"]
 
       configuration = {
-        ApplicationName = "your-codedeploy-application-name"
-        DeploymentGroupName = "your-codedeploy-deployment-group-name"
+        ApplicationName    = "matelliocorp-eb-app"
+        EnvironmentName    = "matelliocorp-eb-env"
       }
     }
   }

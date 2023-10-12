@@ -12,8 +12,7 @@ variable "az_count" {}
 #CICD-Module
 
 variable "region" {}
-variable "Owner" {}
-variable "Branch" {} #update
+variable "FullRepositoryId" {} #update
 variable "s3_location" {}
-variable "OAuthToken" {}
-variable "Repo" {}  
+variable "ConnectionArn" {}
+variable "BranchName" {}
