@@ -17,12 +17,7 @@ module "CICD-Module" {
   source                       = "./CICD-Module"
   project_name                 = var.project_name
   region                       = var.region
-  source_stage_provider        = var.source_stage_provider
-  source_stage_RepositoryName  = var.source_stage_RepositoryName
-  GITHUB_Location              = var.GITHUB_Location
-  source_stage_BranchName      = var.source_stage_BranchName
-  build_stage_ProjectName      = var.build_stage_ProjectName
-  deploy_stage_ApplicationName = var.deploy_stage_ApplicationName
-  deploy_stage_EnvironmentName = var.deploy_stage_EnvironmentName
-  github_token                 = var.github_token
+  s3_location = var.s3_location
+ source_bucket = var.source_bucket
+ source_object_key = var.source_object_key
 }

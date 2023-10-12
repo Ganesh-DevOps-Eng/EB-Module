@@ -2,7 +2,7 @@
 resource "aws_iam_role" "codebuild_service_role" {
   name               = "codebuild-${var.project_name}-Build-service-role"
   assume_role_policy = <<EOF
-{
+{44
   "Version": "2012-10-17",
   "Statement": [
     {

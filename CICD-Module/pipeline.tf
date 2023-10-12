@@ -1,27 +1,26 @@
 resource "aws_codepipeline" "cicd_pipeline" {
-  name     = var.project_name
+  name     = "${var.project_name}-cicd_pipeline"
   role_arn = aws_iam_role.codepipeline_service_role.arn
 
   artifact_store {
-    location = "elasticbeanstalk-us-east-1-015058543222"
+    location = var.s3_location
     type     = "S3"
   }
 
-  stage {
+stage {
     name = "Source"
 
     action {
       name             = "SourceAction"
       category         = "Source"
       owner            = "AWS"
-      provider         = var.source_stage_provider
+      provider         = "S3"
       version          = "1"
       output_artifacts = ["SourceArtifact"]
       configuration = {
-        RepositoryName = var.source_stage_RepositoryName
-        BranchName     = var.source_stage_BranchName
+        S3Bucket         = var.source_bucket
+        S3ObjectKey      = var.source_object_key
         PollForSourceChanges  = true
-        OAuthToken            = var.github_token #should securely store your GitHub token
       }
     }
   }
@@ -38,7 +37,7 @@ resource "aws_codepipeline" "cicd_pipeline" {
       input_artifacts  = ["SourceArtifact"]
       output_artifacts = ["BuildArtifact"]
       configuration = {
-        ProjectName = var.build_stage_ProjectName
+        ProjectName = "${var.project_name}-codebuild-stage"
       }
     }
   }
@@ -54,8 +53,8 @@ resource "aws_codepipeline" "cicd_pipeline" {
       version         = "1"
       input_artifacts = ["BuildArtifact"]
       configuration = {
-        ApplicationName = var.deploy_stage_ApplicationName
-        EnvironmentName = var.deploy_stage_EnvironmentName
+        ApplicationName = "${var.project_name}-eb-app"
+        EnvironmentName = "${var.project_name}-eb-env"
       }
     }
   }

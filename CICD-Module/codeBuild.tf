@@ -1,11 +1,11 @@
-resource "aws_codebuild_project" "vprofile_build" {
-  name         = "Vprofile-Build"
-  description  = "CodeBuild project for Vprofile"
+resource "aws_codebuild_project" "codebuild" {
+  name         = "${var.project_name}-codebuild"
+  description  = "CodeBuild project ${var.project_name} "
   service_role = aws_iam_role.codebuild_service_role.arn
 
   source {
-    type            = "GITHUB"
-    location        = var.GITHUB_Location
+    type            = "S3"
+    location        = var.s3_location
     git_clone_depth = 1
     buildspec       = file("./buildspec.yml")
   }
@@ -19,7 +19,7 @@ resource "aws_codebuild_project" "vprofile_build" {
 
   artifacts {
     type     = "S3"
-    name     = "vprofile-build-artifacts"
+    name     = "${var.project_name}-build-artifacts"
     location = "elasticbeanstalk-${var.region}-${data.aws_caller_identity.current.account_id}"
 
     encryption_disabled = false
@@ -27,11 +27,9 @@ resource "aws_codebuild_project" "vprofile_build" {
 
   logs_config {
     cloudwatch_logs {
-      group_name  = "vprofile-cicd-project"
+      group_name  = "${var.project_name}-cicd-project"
       stream_name = "buildlog"
     }
   }
   source_version = "refs/heads/vp-rem"
 }
-
-

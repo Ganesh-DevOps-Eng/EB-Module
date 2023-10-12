@@ -7,14 +7,10 @@ project_name      = "matelliocorp"
 eb_solution_stack = "64bit Amazon Linux 2023 v4.0.1 running PHP 8.1"
 
 region                       = "us-east-1"
-source_stage_provider        = "GITHUB"
-source_stage_RepositoryName  = "InventorySystem_PHP"
-GITHUB_Location              = "https://github.com/Ganesh-DevOps-Eng/InventorySystem_PHP/blob/main/InventorySystem_PHP.zip"
-source_stage_BranchName      = "main"
-build_stage_ProjectName      = "matelliocorp-build"
-deploy_stage_ApplicationName = "matelliocorp-eb-app"
-deploy_stage_EnvironmentName = "matelliocorp--eb-env"
-github_token                 = "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"
+source_bucket = "elasticbeanstalk-us-east-1-015058543222"
+source_object_key = "InventorySystem_PHP.zip"
+s3_location = "s3://elasticbeanstalk-us-east-1-015058543222/InventorySystem_PHP.zip"
+
 
 #solution_stack_name = "64bit Amazon Linux 2 v4.3.12 running Tomcat 8.5 Corretto 8"
 #solution_stack_name = "64bit Amazon Linux 2023 v6.0.1 running Node.js 18"

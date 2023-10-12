@@ -12,10 +12,10 @@ phases:
       - MYSQL_USER="admin"
       - MYSQL_PASSWORD="admin"
       - DATABASE_NAME="inventory_system"
-      - wget https://github.com/Ganesh-DevOps-Eng/InventorySystem_PHP/blob/main/InventorySystem_PHP.zip
-      - unzip InventorySystem_PHP.zip -d /var/www/html/
-      - cd "/var/www/html/DATABASE FILE/"
-      - MYSQL_HOST=$(/usr/bin/aws rds describe-db-instances --db-instance-identifier matelliocorp-rds --query 'DBInstances[0].Endpoint.Address' --output text)
+      - curl -L -o main.zip https://codeload.github.com/Ganesh-DevOps-Eng/php-code/zip/refs/heads/main
+      - unzip main.zip -d /var/www/html/
+      - cd "/var/www/html/php-code-main/"
+      - MYSQL_HOST=$(/usr/bin/aws rds describe-db-instances --db-instance-identifier ${var.project_name}-rds --query 'DBInstances[0].Endpoint.Address' --output text)
       - mysql -h "$MYSQL_HOST" -u "$MYSQL_USER" -p"$MYSQL_PASSWORD" "$DATABASE_NAME" < inventory_system.sql
   post_build:
     commands:
