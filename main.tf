@@ -11,6 +11,8 @@ module "RDS-Module" {
   password          = var.password
   instance_type     = var.instance_type
   eb_solution_stack = var.eb_solution_stack
+  ami_id = var.ami_id
+  root_domain_name = var.root_domain_name
 }
 
 module "CICD-Module" {

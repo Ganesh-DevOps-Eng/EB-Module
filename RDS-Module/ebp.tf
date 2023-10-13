@@ -90,7 +90,28 @@ resource "aws_elastic_beanstalk_environment" "eb_env" {
     name      = "SystemType"
     value     = "enhanced"
   }
+####Https 
 
+  setting {
+    namespace = "aws:elasticbeanstalk:environment"
+    name      = "LoadBalancerType"
+    value     = "application"
+  }
+  setting {
+    namespace = "aws:elbv2:listener:443"
+    name      = "ListenerEnabled"
+    value     = "true"
+  }
+  setting {
+    namespace = "aws:elbv2:listener:443"
+    name      = "Protocol"
+    value     = "HTTPS"
+  }
+  setting {
+    namespace = "aws:elbv2:listener:443"
+    name      = "SSLCertificateArns"
+    value     = tls_self_signed_cert.self_signed_cert.cert_pem
+  }
 
   tags = {
     Name = "${var.project_name}_eb_app"

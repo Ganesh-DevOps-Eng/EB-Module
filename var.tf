@@ -16,3 +16,6 @@ variable "FullRepositoryId" {} #update
 variable "s3_location" {}
 variable "ConnectionArn" {}
 variable "BranchName" {}
+
+variable "ami_id" {}
+variable "root_domain_name" {}
