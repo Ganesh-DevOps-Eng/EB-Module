@@ -110,7 +110,7 @@ resource "aws_elastic_beanstalk_environment" "eb_env" {
   setting {
     namespace = "aws:elbv2:listener:443"
     name      = "SSLCertificateArns"
-    value     = tls_self_signed_cert.self_signed_cert.cert_pem
+    value     = aws_iam_server_certificate.self_signed_cert.arn
   }
 
   tags = {
