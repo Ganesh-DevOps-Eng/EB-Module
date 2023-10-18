@@ -1,7 +1,13 @@
 provider "aws" {
   region = var.region
 }
-
+terraform {
+  backend "s3" {
+    bucket         = "elasticbeanstalk-us-east-1-015058543222"
+    key            = "EB-module/terraform.tfstate"
+    region         = "us-east-1"  # Use the appropriate AWS region
+  }
+}
 module "RDS-Module" {
   source            = "./RDS-Module"
   vpc_cidr_block    = var.vpc_cidr_block

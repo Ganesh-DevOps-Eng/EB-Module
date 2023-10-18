@@ -19,3 +19,6 @@ root_domain_name = "matelliocorp.com"
 
 # aws elasticbeanstalk list-available-solution-stacks | grep Tomcat
 # aws elasticbeanstalk list-available-solution-stacks | Select-String "Tomcat"
+
+###Read this lines ###
+#changes two thing sso-login.php "entityId" and "assertionConsumerService uner URL" then update also azure basic configureation
